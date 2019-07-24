@@ -107,6 +107,25 @@ func (c *Client) GetBuild(buildID string) (*types.Build, error) {
 	return build, nil
 }
 
+func (c *Client) GetBuildStatus(buildID string) (*types.Build, error) {
+	path := fmt.Sprintf("/httpAuth/app/rest/%s/builds/id:%s?fields=*,triggered(*),properties(property),problemOccurrences(*,problemOccurrence(*)),testOccurrences(*,testOccurrence(*)),changes(*,change(*))", c.version, buildID)
+	var build *types.Build
+
+	err := withRetry(c.retries, func() error {
+		return c.doRequest("GET", path, nil, &build)
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	if build == nil {
+		return nil, errors.New("build not found")
+	}
+
+	return build, nil
+}
+
 func (c *Client) GetBuildID(buildTypeID, branchName, buildNumber string) (string, error) {
 	type builds struct {
 		Count    int
