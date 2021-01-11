@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/Cardfree/teamcity-sdk-go/teamcity"
+	"github.com/ChrisMcKee/teamcity-sdk-go/teamcity"
 )
 
 func main() {
-	client := teamcity.New("myinstance.example.com", "username", "password")
+	client := teamcity.New("myinstance.example.com", "username", "password", "")
 
 	b, err := client.QueueBuild("Project_build_task", "master", nil)
 	if err != nil {
