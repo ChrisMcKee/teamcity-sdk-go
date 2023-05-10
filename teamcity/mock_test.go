@@ -2,7 +2,7 @@ package teamcity
 
 import (
 	"bytes"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -35,7 +35,7 @@ func (b *MockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 }
 
 func newResponse(body string) *http.Response {
-	resp := &http.Response{Body: ioutil.NopCloser(bytes.NewBuffer([]byte(body)))}
+	resp := &http.Response{Body: io.NopCloser(bytes.NewBuffer([]byte(body)))}
 	return resp
 }
 
@@ -43,7 +43,7 @@ func newCodeResponse(status string, httpCode int, body string) *http.Response {
 	resp := &http.Response{
 		Status:     status,
 		StatusCode: httpCode,
-		Body:       ioutil.NopCloser(bytes.NewBuffer([]byte(body))),
+		Body:       io.NopCloser(bytes.NewBuffer([]byte(body))),
 	}
 
 	return resp

@@ -1,11 +1,11 @@
 package teamcity
 
 import (
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/ChrisMcKee/teamcity-sdk-go/types"
-	"github.com/stretchr/testify/assert"
+	as "github.com/stretchr/testify/assert"
 )
 
 func TestClientGetBuildProperties(t *testing.T) {
@@ -37,9 +37,9 @@ func TestClientGetBuilds(t *testing.T) {
 }
 
 func TestClientCancelBuild(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientCancelBuild.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientCancelBuild.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
@@ -58,9 +58,9 @@ func TestClientCancelBuild(t *testing.T) {
 }
 
 func TestClientGetAgentStats(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientGetAgentStats.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientGetAgentStats.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
@@ -84,9 +84,9 @@ func TestClientGetAgentStats(t *testing.T) {
 }
 
 func TestClientGetAgentStatsNoBuild(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientGetAgentStatsNoBuild.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientGetAgentStatsNoBuild.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
@@ -110,9 +110,9 @@ func TestClientGetAgentStatsNoBuild(t *testing.T) {
 }
 
 func TestClientGetBuildQueue(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientGetBuildQueue.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientGetBuildQueue.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
@@ -135,9 +135,9 @@ func TestClientGetBuildQueue(t *testing.T) {
 }
 
 func TestClientGetBuildType(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientGetBuildType.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientGetBuildType.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
@@ -155,7 +155,7 @@ func TestClientGetBuildType(t *testing.T) {
 }
 
 func TestClientInvalidBuildType(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
 	respBody := "Responding with error, status code: 404 (Not Found).\n" +
 		"Details: jetbrains.buildServer.server.rest.errors.NotFoundException: No build type nor template is found by id 'janet'.\n" +
@@ -175,9 +175,9 @@ func TestClientInvalidBuildType(t *testing.T) {
 }
 
 func TestClientGetEmptyBuildQueue(t *testing.T) {
-	assert := assert.New(t)
+	assert := as.New(t)
 
-	jsonFixture, err := ioutil.ReadFile("../fixtures/TestClientGetEmptyBuildQueue.json")
+	jsonFixture, err := os.ReadFile("../fixtures/TestClientGetEmptyBuildQueue.json")
 
 	if err != nil {
 		t.Fatal("Expected no error, got", err)
