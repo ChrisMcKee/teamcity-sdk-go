@@ -1,7 +1,8 @@
-FROM golang:1.15
-RUN go get -t -v "github.com/stretchr/testify"
-COPY . $GOPATH/src/github.com/ChrisMcKee/teamcity-sdk-go
-WORKDIR $GOPATH/src/github.com/ChrisMcKee/teamcity-sdk-go
+FROM golang:1.20
+WORKDIR /src/ChrisMcKee/teamcity-sdk-go
+COPY . .
+RUN go mod download
+RUN go build
 RUN go test -v -c ./types && \
     go test -v -c ./teamcity
 CMD ./run-test.sh

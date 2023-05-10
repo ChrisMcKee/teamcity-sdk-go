@@ -26,7 +26,7 @@ func TestProperties(t *testing.T) {
 			},
 		})
 
-	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"password description='What test runner are we going to use' display='normal' label='Test runner'"}}]}`,
+	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"password description='What test runner are we going to use' display='normal' label='Test runner' readOnly='false'"}}]}`,
 		&Parameters{
 			"env.TEST_RUNNER": Parameter{
 				Value: "l",
@@ -38,7 +38,7 @@ func TestProperties(t *testing.T) {
 			},
 		})
 
-	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"text description='What test runner are we going to use' display='prompt' validationMode='not_empty'"}}]}`,
+	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"text description='What test runner are we going to use' display='prompt' readOnly='false' validationMode='not_empty'"}}]}`,
 		&Parameters{
 			"env.TEST_RUNNER": Parameter{
 				Value: "l",
@@ -50,7 +50,7 @@ func TestProperties(t *testing.T) {
 			},
 		})
 
-	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"checkbox checkedValue='Wow' display='hidden' label='Test runner'"}}]}`,
+	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.TEST_RUNNER","value":"l","type":{"rawValue":"checkbox checkedValue='Wow' display='hidden' label='Test runner' readOnly='false'"}}]}`,
 		&Parameters{
 			"env.TEST_RUNNER": Parameter{
 				Value: "l",
@@ -62,7 +62,7 @@ func TestProperties(t *testing.T) {
 			},
 		})
 
-	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.PLING","value":"donk","type":{"rawValue":"select data_1='te' display='hidden' label='Test |||| ||M |||'runner||'"}}]}`,
+	MarshalAndUnmarhalMatch(t, `{"property":[{"name":"env.PLING","value":"donk","type":{"rawValue":"select data_1='te' display='hidden' label='Test |||| ||M |||'runner||' readOnly='false'"}}]}`,
 		&Parameters{
 			"env.PLING": Parameter{
 				Value: "donk",
