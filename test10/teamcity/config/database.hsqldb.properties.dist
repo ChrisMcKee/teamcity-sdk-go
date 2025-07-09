@@ -2,7 +2,7 @@
 # To make it effective, copy it to the "database.properties" file and modify the settings
 # according to your environment.
 # Do not modify this file, it will be overwritten on the TeamCity server start-up.
-# See documentation at https://confluence.jetbrains.com/display/TCD10/Setting+up+an+External+Database
+# See documentation at https://www.jetbrains.com/help/teamcity/?Setting+up+an+External+Database
 
 # Database: HSQLDB (HyperSonic) version 2.x 
 

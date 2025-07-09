@@ -3,7 +3,7 @@
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
 
-<#assign subj><@resp.subject responsibility '${project.fullName} :: ${buildType.name}'/></#assign>
+<#assign subj><@resp.subject responsibility '${project.fullName} / ${buildType.name}'/></#assign>
 
 <#global subject>[<@common.subjMarker/>, INVESTIGATION] ${subj}</#global>
 
@@ -16,7 +16,7 @@ ${link.buildTypeConfigLink}
 
 <#global bodyHtml>
 <div>
-  <div><@resp.subject responsibility '${project.fullName?html} :: ${buildType.name?html}'/>.</div>
+  <div><@resp.subject responsibility '${project.fullName?html} / ${buildType.name?html}'/>.</div>
   <div><@resp.removeMethod responsibility/></div>
   <div><@resp.comment responsibility/></div>
   <br>

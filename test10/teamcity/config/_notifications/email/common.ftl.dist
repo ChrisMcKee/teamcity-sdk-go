@@ -1,7 +1,7 @@
 <#-- Uses FreeMarker template syntax, template guide can be found at http://freemarker.org/docs/dgui.html -->
 
-<#assign codeStyle>font-family: monospace; font-family: Menlo, Bitstream Vera Sans Mono, Courier New, Courier, monospace; font-size: 12px;</#assign>
-<#assign failedStyle>color: #ED2C10;</#assign>
+<#assign codeStyle>font-family: monospace; font-family: Menlo, Bitstream Vera Sans Mono, Consolas, Courier New, Courier, monospace; font-size: 12px;</#assign>
+<#assign failedStyle>color: #a90f1a;</#assign>
 <#assign stacktraceStyle>color: darkred;</#assign>
 <#assign separatorStyle>height: 2px; padding: 0; background: #D6D6D6;</#assign>
 
@@ -41,7 +41,7 @@
         <#assign description=mod.description?html/>
         <#if description?length == 0><#assign description='&lt;no comment&gt;'/></#if>
         <div>
-          <#assign modLink><a href='${webLinks.getChangeFilesUrl(mod.id, mod.personal)}'>${mod.changes?size} file<@plural mod.changes?size/></a></#assign>
+          <#assign modLink><a href='${webLinks.getChangeFilesUrl(mod.id, mod.personal)}'>${mod.changeCount} file<@plural mod.changeCount/></a></#assign>
           Change ${mod.displayVersion} ${pers} by ${mod.userName} (${modLink}):
           <i>${description?replace("(\r?\n|\r)", "<br>", "r")?trim}</i>
         </div>
@@ -164,17 +164,30 @@
 </#macro>
 
 <#macro footer>
-============================================================================
-Configure email notifications: ${link.editNotificationsLink}
+    <#if notificationType??>
+      ============================================================================
+      Configure email notifications: ${link.editBuildTypeNotificationsLink}
+    <#else>
+      ============================================================================
+      Configure email notifications: ${link.editNotificationsLink}
+    </#if>
 </#macro>
 
 <#macro footerHtml>
-<div style='color: #666666; font-size:85%'>
-  <br/>
-  <div style="${separatorStyle}"></div>
-  <br/>
-  <a href='${link.editNotificationsLink}'>Configure</a> your email notifications on your settings page.
-</div>
+  <div style='color: #666666; font-size:85%'>
+    <br/>
+    <div style="${separatorStyle}"></div>
+    <br/>
+      <#if notificationType??>
+        <a href='${link.editBuildTypeNotificationsLink}'>Configure</a> email notifications for this build configuration
+      <#else>
+        <a href='${link.editNotificationsLink}'>Configure</a> your email notifications on your settings page.
+      </#if>
+  </div>
 </#macro>
 
 <#macro short_build_info build><#if build.branch??>[${build.branch.displayName}] </#if>#${build.buildNumber}</#macro>
+<#macro short_build_info_html build><#if build.branch??>[${build.branch.displayName?html}] </#if>#${build.buildNumber?html}</#macro>
+
+<#macro short_queued_build_info queuedBuild><#if queuedBuild.buildPromotion.branch??>[${queuedBuild.buildPromotion.branch.displayName}] </#if></#macro>
+<#macro short_queued_build_info_html queuedBuild><#if queuedBuild.buildPromotion.branch??>[${queuedBuild.buildPromotion.branch.displayName?html}] </#if></#macro>

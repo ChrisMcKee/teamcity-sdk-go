@@ -2,11 +2,14 @@
 
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
+<#assign reporter>
+  <@resp.reporterDescription responsibility/>
+</#assign>
 
-<#global subject>[<@common.subjMarker/>, INVESTIGATION] You are assigned for investigation of ${project.fullName} :: ${buildType.name}</#global>
+<#global subject>[<@common.subjMarker/>, INVESTIGATION] You are assigned for investigation of ${project.fullName} / ${buildType.name}</#global>
 
 <#global body>You are assigned for investigation of a build configuration failure.
-${project.fullName} :: ${buildType.name}, assigned by ${responsibility.reporterUser.descriptiveName}
+${project.fullName} / ${buildType.name}, assigned by ${reporter}
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/>
 
@@ -16,7 +19,7 @@ ${link.buildTypeConfigLink}
 <#global bodyHtml>
 <div>
   <div>You are assigned for investigation of a build configuration failure.</div>
-  <div><b>${project.fullName?html} :: ${buildType.name?html}</b>, assigned by ${responsibility.reporterUser.descriptiveName?html}</div>
+  <div><b>${project.fullName?html} / ${buildType.name?html}</b>, assigned by ${reporter?html}</div>
   <div><@resp.removeMethod responsibility/></div>
   <div><@resp.comment responsibility/></div>
   <br>

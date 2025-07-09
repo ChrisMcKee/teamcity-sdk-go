@@ -1,12 +1,24 @@
 <root>
-  <page path="/" />
   <page path="/admin/createTemplate.html" />
-  <page path="/admin/editBuild.html" />
-  <page path="/admin/editBuildRunners.html" />
   <page path="/admin/editProject.html" />
-  <page path="/admin/editRunType.html" />
-  <page path="/admin/editTriggers.html" />
-  <page path="/project.html?tab=projectOverview" />
+  <page path="/agent-terminal/agent-terminal-status.html">
+    <usage userId="-42" timestamp="1752102807738" />
+  </page>
   <page path="/viewType.html" />
+  <page path="/admin/admin.html">
+    <usage userId="-42" timestamp="1752102927466" />
+  </page>
+  <page path="/admin/editBuildRunners.html" />
+  <page path="/" />
+  <page path="/admin/editBuild.html" />
+  <page path="/project.html?tab=projectOverview" />
   <page path="/visibleProjects.html" />
+  <page path="/admin/editTriggers.html" />
+  <page path="/favorite/projects">
+    <usage userId="-42" timestamp="1752102842473" />
+  </page>
+  <page path="/404.html">
+    <usage userId="-42" timestamp="1752102896213" />
+  </page>
+  <page path="/admin/editRunType.html" />
 </root>

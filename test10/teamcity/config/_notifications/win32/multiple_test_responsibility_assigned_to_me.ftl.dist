@@ -6,6 +6,6 @@
 <#global link>${link.myResponsibilitiesLink}</#global>
 <#global message>You are assigned for investigation of tests failure in ${project.fullName}
 (${testNames?first} and ${testNames?size - 1} more),
-assigned by ${responsibility.reporterUser.descriptiveName}
+assigned by <@resp.reporterDescription responsibility/>
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/></#global>

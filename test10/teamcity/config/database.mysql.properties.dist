@@ -2,7 +2,7 @@
 # To make it effective, copy it to the "database.properties" file and modify the settings
 # according to your environment.
 # Do not modify this file, it will be overwritten on the TeamCity server start-up.
-# See documentation at https://confluence.jetbrains.com/display/TCD10/Setting+up+an+External+Database
+# See documentation at https://www.jetbrains.com/help/teamcity/?Setting+up+an+External+Database
 
 # Database: MySQL  
 
@@ -17,18 +17,6 @@ connectionProperties.password=<password>
 
 # The maximum number of connections TeamCity can open on a database server.
 maxConnections=50
-
-# Specifies whether the driver should use the Unicode character encoding
-# when handling strings. Should only be used when the driver cannot determine
-# the character set mapping, or you are trying to 'force' the
-# driver to use Unicode
-#
-# connectionProperties.useUnicode=true
-
-# If 'useUnicode' is set to true, the following property determines what
-# character encoding the driver should use when dealing with strings
-#
-# connectionProperties.characterEncoding=UTF-8
 
 # Specifies whether TeamCity should check each jdbc connection before use.
 # It reduces the system performance but avoids cases when the system uses

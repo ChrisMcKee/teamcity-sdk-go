@@ -50,7 +50,7 @@
 
       <#elseif resetLinks?size == 1>
         <p>
-            This email address is associated with the user '${resetLinks[0].first.username}'; use the following link to reset the password: <br/>
+            This email address is associated with the user '${resetLinks[0].first.username?html}'; use the following link to reset the password: <br/>
         </p>
         <p><a href="${resetLinks[0].second}">Reset Password</a></p>
 
@@ -60,7 +60,7 @@
         </p>
         <p>
           <#list resetLinks as resetLink>
-              <a href="${resetLink.second}">Reset Password</a> for user '${resetLink.first.username}' <#if (resetLink.first.lastLoginTimestamp)??>(last logged in ${resetLink.first.lastLoginTimestamp?string("dd MMM yy HH:mm")})</#if><br/>
+              <a href="${resetLink.second}">Reset Password</a> for user '${resetLink.first.username?html}' <#if (resetLink.first.lastLoginTimestamp)??>(last logged in ${resetLink.first.lastLoginTimestamp?string("dd MMM yy HH:mm")})</#if><br/>
           </#list>
         </p>
       </#if>

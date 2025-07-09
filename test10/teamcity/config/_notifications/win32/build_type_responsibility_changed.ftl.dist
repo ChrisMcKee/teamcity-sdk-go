@@ -4,7 +4,7 @@
 <#import "responsibility.ftl" as resp>
 
 <#global link>${link.buildTypeConfigLink}</#global>
-<#global message><@resp.subject responsibility '${project.fullName}::${buildType.name}'/>
+<#global message><@resp.subject responsibility '${project.fullName} / ${buildType.name}'/>
 
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/></#global>

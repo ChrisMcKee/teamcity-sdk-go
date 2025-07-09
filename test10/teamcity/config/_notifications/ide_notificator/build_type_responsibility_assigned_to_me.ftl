@@ -5,6 +5,6 @@
 
 <#global link>${link.buildTypeConfigLink}</#global>
 <#global message>You are assigned for investigation of a build configuration failure,
-${buildType.fullName}, assigned by ${responsibility.reporterUser.descriptiveName}
+${buildType.fullName}, assigned by <@resp.reporterDescription responsibility/>
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/></#global>

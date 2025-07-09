@@ -104,9 +104,10 @@ Note: SYSTEM_ADMIN role id is preserved, role with such id must not occur in thi
       <permission id="VIEW_BUILD_CONFIGURATION_SETTINGS" />
       <permission id="VIEW_FILE_CONTENT" />
       <permission id="REORDER_BUILD_QUEUE" />
-      <permission id="VIEW_AGENT_DETAILS" />
+      <permission id="VIEW_AGENT_DETAILS_FOR_PROJECT" />
       <permission id="VIEW_AGENT_USAGE_STATISTICS" />
       <permission id="VIEW_BUILD_RUNTIME_DATA" />
+      <permission id="PATCH_BUILD_SOURCES" />
     </permissions>
   </role>
   <role id="PROJECT_ADMIN" orderNum="30" name="Project administrator">

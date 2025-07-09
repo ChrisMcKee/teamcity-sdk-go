@@ -4,10 +4,13 @@
   <#-- @ftlvariable name="responsibility" type="jetbrains.buildServer.responsibility.ResponsibilityEntry" -->
   <#-- @ftlvariable name="object" type="java.lang.Object" -->
   <#compress>
+    <#assign reporter>
+      <@reporterDescription responsibility/>
+    </#assign>
     <#assign doneByAnotherUser=(responsibility.state != "NONE" &&
                                 responsibility.reporterUser?? && responsibility.responsibleUser?? &&
                                 responsibility.reporterUser.id != responsibility.responsibleUser.id)/>
-    <#assign byWhom>by ${responsibility.reporterUser.descriptiveName?html}</#assign>
+    <#assign byWhom>by ${reporter?html}</#assign>
     <#if responsibility.state.active>
       <#if responsibility.reporterUser?? && responsibility.responsibleUser?? &&
            responsibility.reporterUser.id == responsibility.responsibleUser.id>
@@ -35,6 +38,15 @@ Comment: ${responsibility.comment?html}
 <#macro removeMethod responsibility>
 <#-- @ftlvariable name="responsibility" type="jetbrains.buildServer.responsibility.ResponsibilityEntry" -->
 Resolve: <#if responsibility.removeMethod.manually>manually<#else>automatically when fixed</#if>
+</#macro>
+
+<#macro reporterDescription responsibility>
+<#-- @ftlvariable name="responsibility" type="jetbrains.buildServer.responsibility.ResponsibilityEntry" -->
+<#if responsibility.reporterUser??>
+${responsibility.reporterUser.descriptiveName}
+<#else>
+TeamCity
+</#if>
 </#macro>
 
 <#macro buildTypeInvestigation buildType successful>

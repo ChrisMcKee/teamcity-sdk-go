@@ -3,9 +3,9 @@
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
 
-<#global subject>[<@common.subjMarker/>, SUCCESSFUL] Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/></#global>
+<#global subject>[<@common.subjMarker/>, SUCCESSFUL] Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/></#global>
 
-<#global body>Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/> successful ${var.buildShortStatusDescription}.
+<#global body>Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/> successful ${var.buildShortStatusDescription}.
 <@resp.buildTypeInvestigation buildType true/>
 <#if !build.agentLessBuild>Agent: ${agentName}</#if>
 Build results: ${link.buildResultsLink}
@@ -16,16 +16,16 @@ ${var.buildCompilationErrors}${var.buildFailedTestsErrors}${var.buildChanges}
 <#global bodyHtml>
 <div>
   <div>
-    Build <b>${project.fullName?html} :: ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info build/></a> successful
-    ${var.buildShortStatusDescription}
+    Build <b>${project.fullName?html} / ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info_html build/></a> successful
+    ${var.buildShortStatusDescription?html}
   </div>
   <div><@resp.buildTypeInvestigation buildType true/></div>
   <@common.build_agent build/>
   <@common.build_comment build/>
   <br>
-  <@common.build_changes var.changesBean/>
   <@common.compilation_errors var.compilationBean/>
   <@common.test_errors var.failedTestsBean/>
+  <@common.build_changes var.changesBean/>
   <@common.footerHtml/>
 </div>
 </#global>

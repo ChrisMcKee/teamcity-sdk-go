@@ -2,7 +2,7 @@
 
 <#import "common.ftl" as common>
 
-<#global subject>[<@common.subjMarker/>, LABELING FAILED] ${project.fullName} :: ${buildType.name} <@common.short_build_info build/></#global>
+<#global subject>[<@common.subjMarker/>, LABELING FAILED] ${project.fullName} / ${buildType.name} <@common.short_build_info build/></#global>
 
 <#global body>Labeling failed for root '${vcsRoot.name}'.
 Build results: ${link.buildResultsLink}

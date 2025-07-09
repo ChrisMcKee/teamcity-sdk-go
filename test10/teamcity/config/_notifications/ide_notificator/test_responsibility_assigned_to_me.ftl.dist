@@ -5,6 +5,6 @@
 
 <#global link>${link.testLink}</#global>
 <#global message>You are assigned for investigation of a test failure
-${testName} (${project.fullName}), assigned by ${responsibility.reporterUser.descriptiveName}
+${testName} (${project.fullName}), assigned by <@resp.reporterDescription responsibility/>
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/></#global>

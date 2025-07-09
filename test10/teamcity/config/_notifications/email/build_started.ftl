@@ -3,9 +3,9 @@
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
 
-<#global subject>[<@common.subjMarker/>, STARTED] Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/></#global>
+<#global subject>[<@common.subjMarker/>, STARTED] Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/></#global>
 
-<#global body>Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/> started<#if build.triggeredBy.triggeredByUser> (triggered by ${build.triggeredBy.user.descriptiveName})</#if>.
+<#global body>Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/> started<#if build.triggeredBy.triggeredByUser> (triggered by ${build.triggeredBy.user.descriptiveName})</#if>.
 <@resp.buildTypeInvestigation buildType false/>
 <#if !build.agentLessBuild>Agent: ${agentName}</#if>
 Build results: ${link.buildResultsLink}
@@ -16,7 +16,7 @@ ${var.buildChanges}
 <#global bodyHtml>
 <div>
   <div>
-    Build <b>${project.fullName?html} :: ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info build/></a> started
+    Build <b>${project.fullName?html} / ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info_html build/></a> started
     <#if build.triggeredBy.triggeredByUser>(triggered by ${build.triggeredBy.user.descriptiveName?html})</#if>
   </div>
   <div><@resp.buildTypeInvestigation buildType false/></div>

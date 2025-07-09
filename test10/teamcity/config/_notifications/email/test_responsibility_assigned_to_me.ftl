@@ -2,11 +2,14 @@
 
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
+<#assign reporter>
+  <@resp.reporterDescription responsibility/>
+</#assign>
 
 <#global subject>[<@common.subjMarker/>, INVESTIGATION] You are assigned for investigation of ${testName} failure</#global>
 
 <#global body>You are assigned for investigation of a test failure.
-${testName} (${project.fullName}), assigned by ${responsibility.reporterUser.descriptiveName}
+${testName} (${project.fullName}), assigned by ${reporter}
 <@resp.removeMethod responsibility/>
 <@resp.comment responsibility/>
 
@@ -16,7 +19,7 @@ ${link.testLink}
 <#global bodyHtml>
 <div>
   <div>You are assigned for investigation of a test failure.</div>
-  <div><b>${testName?html}</b> (${project.fullName?html}), assigned by ${responsibility.reporterUser.descriptiveName?html}.</div>
+  <div><b>${testName?html}</b> (${project.fullName?html}), assigned by ${reporter?html}.</div>
   <div><@resp.removeMethod responsibility/></div>
   <div><@resp.comment responsibility/></div>
   <br>

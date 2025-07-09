@@ -6,7 +6,7 @@
 -->
 
 <!-- Server root - set of Build Types and User Groups -->
-<!ELEMENT server (version|db-compact|backup|artifacts|comment-transformation|permissions|build-metrics|build-settings|vcs-settings)*>
+<!ELEMENT server (version|db-compact|backup|domain-isolation|artifacts|comment-transformation|permissions|build-metrics|build-settings|vcs-settings|auto-update|git)*>
 <!ATTLIST server
     rootURL CDATA #IMPLIED
 >
@@ -24,9 +24,7 @@
 
 <!ELEMENT scheduler (#PCDATA)>
 <!ATTLIST scheduler
-    hour CDATA #IMPLIED
-    minute CDATA #IMPLIED
-    day-of-week (monday|tuesday|wednesday|thursday|friday|saturday|sunday) #IMPLIED
+    cron CDATA #IMPLIED
 >
 
 <!ELEMENT backup (backup-dir?)>
@@ -47,7 +45,15 @@
 <!ELEMENT artifacts EMPTY>
 <!ATTLIST artifacts
     maxArtifactSize CDATA #IMPLIED
+    maxArtifactsNumber CDATA #IMPLIED
     artifact-paths CDATA #REQUIRED
+    artifacts-root-url CDATA #IMPLIED
+>
+
+<!ELEMENT domain-isolation EMPTY>
+<!ATTLIST domain-isolation
+  protection-enabled CDATA #IMPLIED
+  artifacts-root-url CDATA #IMPLIED
 >
 
 <!ELEMENT build-settings EMPTY>
@@ -57,6 +63,7 @@
 
 <!ELEMENT vcs-settings EMPTY>
 <!ATTLIST vcs-settings
+    enforce-minimum CDATA #IMPLIED
     modification-check-interval CDATA #IMPLIED
     quiet-period CDATA #IMPLIED
 >
@@ -72,3 +79,13 @@
     key CDATA #REQUIRED
     description CDATA #REQUIRED
 >
+
+<!ELEMENT auto-update EMPTY>
+<!ATTLIST auto-update
+    security-patches-mode CDATA #IMPLIED
+>
+
+<!ELEMENT git EMPTY>
+<!ATTLIST git
+    nativeOperationsEnabled (true|false|yes|no) #REQUIRED
+    >

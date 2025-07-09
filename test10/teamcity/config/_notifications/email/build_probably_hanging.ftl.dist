@@ -3,9 +3,9 @@
 <#import "common.ftl" as common>
 <#import "responsibility.ftl" as resp>
 
-<#global subject>[<@common.subjMarker/>, PROBABLY_HANGING] Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/></#global>
+<#global subject>[<@common.subjMarker/>, PROBABLY_HANGING] Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/></#global>
 
-<#global body>Build ${project.fullName} :: ${buildType.name} <@common.short_build_info build/> is probably hanging ${var.buildShortStatusDescription}.
+<#global body>Build ${project.fullName} / ${buildType.name} <@common.short_build_info build/> is probably hanging ${var.buildShortStatusDescription}.
 Estimated duration: ${var.buildDurationEstimate}, overtime: ${var.buildDurationOvertime}
 Last message was received on: ${var.buildLastMessageTimestamp} (${var.buildTimeSinceLastMessage} ago)
 <@resp.buildTypeInvestigation buildType false/>
@@ -18,8 +18,8 @@ ${var.buildChanges}
 <#global bodyHtml>
 <div>
   <div>
-    Build <b>${project.fullName?html} :: ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info build/></a> is probably hanging
-    ${var.buildShortStatusDescription}
+    Build <b>${project.fullName?html} / ${buildType.name?html}</b> <a href='${link.buildResultsLink}'><@common.short_build_info_html build/></a> is probably hanging
+    ${var.buildShortStatusDescription?html}
   </div>
   <div>Estimated duration: ${var.buildDurationEstimate}, overtime: ${var.buildDurationOvertime}</div>
   <div>Last message was received on: ${var.buildLastMessageTimestamp} (${var.buildTimeSinceLastMessage} ago)</div>

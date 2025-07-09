@@ -1,21 +1,7 @@
-version: '3'
 services:
   api:
     build: .
     command: ./run-test.sh
-  api9:
-    build: .
-    depends_on:
-      - teamcity9
-    links:
-      - teamcity9
-    command: ./run-test.sh -host=teamcity9
-  teamcity9:
-    build: test9
-    ports:
-      - 8111:8111
-    volumes:
-      - ./test9/teamcity:/test-data
   api10:
     build: .
     depends_on:
@@ -30,7 +16,7 @@ services:
     volumes:
       - ./test10/teamcity:/test-data
   # agent10:
-  #   image: jetbrains/teamcity-agent:2017.1.4
+  #   image: jetbrains/teamcity-agent:2025.03.3
   #   depends_on:
   #     - teamcity10
   #   links:

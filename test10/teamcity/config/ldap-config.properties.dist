@@ -1,7 +1,7 @@
 # This is a sample configuration file for TeamCity LDAP integration
 # To make it effective, copy it to ldap-config.properties file
 # This file is overwritten with default content on each server startup.
-# See documentation at https://confluence.jetbrains.com/display/TCD10/LDAP+Integration
+# See documentation at https://www.jetbrains.com/help/teamcity/?LDAP+Integration
 # Note that all the values in the file should be property-file-escaped. Most importantly, backslash ("\") should be replaced with two backslashes ("\\")
 
 ### MANDATORY SETTINGS ###
@@ -15,7 +15,7 @@
 # Note that many LDAP server require a full DN in "principal" (e.g. CN=Administrator,CN=Users,DC=example inc,DC=com), and this value should not be url-escaped.
 # For Active Directory you can include full DN or full login name with domain (e.g. DOMAIN\\Username )
 # The user must have read access to all LDAP entries under 'teamcity.users.base' and 'teamcity.groups.base' (see below).
-# To store the password value not in clear text, refer to https://confluence.jetbrains.com/display/TCD10/LDAP+Integration#LDAPIntegration-scrambledPassword
+# To store the password value not in clear text, refer to https://www.jetbrains.com/help/teamcity/?LDAP+Integration#LDAPIntegration-scrambledPassword
 #java.naming.security.principal=<username>
 #java.naming.security.credentials=<password>
 
@@ -82,6 +82,14 @@
 # New user username can be referenced by "$username$"
 #teamcity.users.previousUsername=EXAMPLE\\$login$
 
+### CONNECTION SETTINGS ###
+
+# Timeout for connecting to the LDAP server (in milliseconds). Default value is 60000.
+#com.sun.jndi.ldap.connect.timeout=60000
+
+# Read timeout for an LDAP operation (in milliseconds). Default value is 60000.
+#com.sun.jndi.ldap.read.timeout=60000
+
 ####################################################################################################
 # LDAP SYNCHRONIZATION
 ####################################################################################################
@@ -116,10 +124,10 @@ teamcity.options.groups.synchronize=false
 # The search is performed inside the LDAP entry denoted by "teamcity.groups.base". The result should include all the groups configured in the ldap-mapping.xml file.
 #teamcity.groups.filter=(objectClass=group)
 
-# Set to "true" to enable automatic user creation and deletion during group synchronization.
-# Creates users in TeamCity if they are found in one of the mapped groups
+# Set to "true" to enable automatic user creation and deletion during groups synchronization.
+# Create users in TeamCity if they are found in one of the mapped groups
 teamcity.options.createUsers=false
-# Deleted users in TeamCity if they are not found in any of the mapped groups
+# Delete users in TeamCity if they are not found in any of the mapped groups
 teamcity.options.deleteUsers=false
 
 ### OPTIONAL SETTINGS ###
@@ -188,7 +196,7 @@ teamcity.users.property.email=mail
 #teamcity.users.syncOnlyTeamcityUsers=true
 #teamcity.users.filterPackSize=100
 
-# When set to 'true', TeamCity processes nested LDAP groups to get members of a the mapped groups and treats the found users as if they are direct members of the group.
+# When set to 'true', TeamCity processes nested LDAP groups while getting members of the mapped groups and treats the found users as if they are direct members of the mapped group.
 # Note: when using this option make sure that all the groups in the hierarchy are matched by 'teamcity.groups.base'/'teamcity.groups.filter'
 #teamcity.groups.retrieveUsersFromNestedGroups=true
 
