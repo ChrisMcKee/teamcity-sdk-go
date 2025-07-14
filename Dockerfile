@@ -1,4 +1,4 @@
-FROM golang:1.20
+FROM golang:1.24
 WORKDIR /src/ChrisMcKee/teamcity-sdk-go
 COPY . .
 RUN go mod download

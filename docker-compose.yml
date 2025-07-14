@@ -1,36 +1,25 @@
-version: '3'
 services:
-  api:
-    build: .
-    command: ./run-test.sh
-  api9:
-    build: .
-    depends_on:
-      - teamcity9
-    links:
-      - teamcity9
-    command: ./run-test.sh -host=teamcity9
-  teamcity9:
-    build: test9
-    ports:
-      - 8111:8111
-    volumes:
-      - ./test9/teamcity:/test-data
   api10:
     build: .
     depends_on:
-      - teamcity10
+      teamcity10:
+        condition: service_healthy
     links:
       - teamcity10
     command: ./run-test.sh -host=teamcity10
   teamcity10:
     build: test10
     ports:
-      - 8112:8111
+      - 8111:8111
     volumes:
       - ./test10/teamcity:/test-data
+    healthcheck:
+      test: ["CMD-SHELL", "docker logs $(hostname) 2>&1 | grep -q 'TeamCity is running in professional mode'"]
+      interval: 30s
+      timeout: 5s
+      retries: 10
   # agent10:
-  #   image: jetbrains/teamcity-agent:2017.1.4
+  #   image: jetbrains/teamcity-agent:2025.03.3
   #   depends_on:
   #     - teamcity10
   #   links:

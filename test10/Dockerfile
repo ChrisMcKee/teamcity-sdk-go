@@ -1,5 +1,4 @@
-FROM jetbrains/teamcity-server:2022.10.3
-MAINTAINER Brian Olsen <brian@maven-group.org>
+FROM jetbrains/teamcity-server:2025.03.3
 
 COPY reset.sh /reset.sh
 CMD ["/reset.sh"]
