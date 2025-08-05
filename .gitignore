@@ -33,3 +33,5 @@ _testmain.go
 # Binaries
 tester/tester
 /.idea/
+
+/test10/teamcity/config/projects/_Root/buildTypes/*
