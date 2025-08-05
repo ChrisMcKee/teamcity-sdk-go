@@ -59,7 +59,7 @@ type Build struct {
 		TestOccurrence []TestOccurrence
 	}
 
-	Tags []string `json:"tags,omitempty"`
+	Tags Tags `json:"tags,omitempty"`
 
 	Properties Properties `json:"properties"`
 }
@@ -86,19 +86,30 @@ func (tags Tags) MarshalJSON() ([]byte, error) {
 }
 
 func (tags *Tags) UnmarshalJSON(b []byte) error {
-	var ti tagsInput
-	if err := json.Unmarshal(b, &ti); err != nil {
-		return err
+	// Handle null, empty object, or the usual object with tag array
+	if string(b) == "null" || string(b) == "{}" {
+		*tags = make(Tags, 0)
+		return nil
 	}
-	if ti.Tag != nil {
+
+	// Try to unmarshal as the usual object
+	var ti tagsInput
+	if err := json.Unmarshal(b, &ti); err == nil && ti.Tag != nil {
 		*tags = make(Tags, len(ti.Tag))
 		for idx, tag := range ti.Tag {
 			(*tags)[idx] = tag.Name
 		}
-	} else {
-		*tags = make(Tags, 0)
+		return nil
 	}
-	return nil
+
+	// Try to unmarshal as a plain array of strings (rare, but possible)
+	var arr []string
+	if err := json.Unmarshal(b, &arr); err == nil {
+		*tags = arr
+		return nil
+	}
+
+	return fmt.Errorf("Tags: cannot unmarshal %s", string(b))
 }
 
 func (b *Build) String() string {
